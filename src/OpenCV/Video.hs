@@ -3,13 +3,15 @@
 -- for writing to video files.
 module OpenCV.Video (createFileCapture, createFileCaptureLoop, 
                      createCameraCapture, createVideoWriter, 
-                     FourCC, toFourCC, mpeg4CC) where
+                     FourCC, toFourCC, mpeg4CC,
+                     withCameraCapture) where
 import Data.Maybe (fromMaybe)
 import Foreign.Ptr
 import Foreign.ForeignPtr (withForeignPtr)
 import OpenCV.Core.CxCore
 import OpenCV.Core.ImageUtil
 import OpenCV.Core.HighGui
+--import System.IO.Streams
 
 -- |Raise an error if 'cvQueryFrame' returns 'Nothing'; otherwise
 -- returns a 'Ptr' 'IplImage'.
@@ -61,6 +63,23 @@ createCameraCapture cam = do cvInit
                              return (withForeignPtr capture $ 
                                      (>>= peekIpl) . queryError)
     where cam' = fromMaybe (-1) cam
+
+withCameraFrames :: (HasDepth d, SingI c) =>
+                     Maybe Int -> ((Image c d NoROI) -> IO ()) -> IO ()
+withCameraFrames cam frameAction = do
+ capture <- createCameraCaptureF (fromMaybe (-1) cam)
+ withForeignPtr capture $ \c -> go c
+   where go :: Ptr CvCapture -> IO ()
+         go p = do
+           fr <- queryFrameLoop p
+           case ptrToMaybe fr of
+             Nothing    -> return ()
+             Just frame -> peekIpl frame >>= frameAction >> go p
+           
+  
+
+--streamFromCamera :: (HasDepth d, SingI c) => Maybe Int -> IO (InputStream (Image c d NoROI))
+--streamFromCamera = undefined
 
 -- |4-character code for MPEG-4.
 mpeg4CC :: FourCC
