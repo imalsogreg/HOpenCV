@@ -62,6 +62,19 @@ createCameraCapture cam = do cvInit
                                      (>>= peekIpl) . queryError)
     where cam' = fromMaybe (-1) cam
 
+
+withCameraFrames :: (HasDepth d, SingI c) =>
+                    Maybe Int -> ((Image c d NoROI) -> IO ()) -> IO ()
+withCameraFrames cam frameAction = do
+  capture <- createCameraCaptureF (fromMaybe (-1) cam)
+  withForeignPtr capture >>= go
+  where go :: Ptr CvCapture -> IO ()
+  go p = do
+    fr <- queryFrameLoop p
+    case ptrToMaybe fr of
+      Nothing -> return ()
+      Just frame -> peekIpl frame >>= frameAction >> go p
+
 -- |4-character code for MPEG-4.
 mpeg4CC :: FourCC
 mpeg4CC = ('F','M','P','4')
