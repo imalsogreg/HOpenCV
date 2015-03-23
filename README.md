@@ -1,3 +1,5 @@
+<div align="center" style="width:300px;"><img src="https://github.com/CBMM/CBMM.github.io/blob/master/site/images/cameraLensCV.png"></div>
+
 # HOpenCV
 
 [OpenCV](http://opencv.willowgarage.com/wiki/) bindings for Haskell

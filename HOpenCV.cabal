@@ -4,10 +4,13 @@ license: BSD3
 author: Noam Lewis <jones.noamle@gmail.com>
 maintainer: Anthony Cowley <acowley@gmail.com>
 stability: experimental
+extra-source-files: images/cameraLens.svg images/cameraLensCV.png
 category: AI, Graphics
 synopsis: A binding for the OpenCV computer vision library.
 Tested-With:   GHC==7.6.1
 description:
+   <<http://github.com/CBMM/CBMM.github.io/blob/master/site/images/cameraLensCV.png>>
+
    Limited bindings to OpenCV 2.4. (See: <http://opencv.willowgarage.com/wiki/Welcome>)
    .
    /Installation/
