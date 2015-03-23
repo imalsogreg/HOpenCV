@@ -1,5 +1,5 @@
 name: HOpenCV
-version: 0.4.0
+version: 0.4.1
 license: BSD3
 author: Noam Lewis <jones.noamle@gmail.com>
 maintainer: Anthony Cowley <acowley@gmail.com>
@@ -94,3 +94,9 @@ library
                   vector >= 0.7,
                   singletons, tagged
    ghc-options: -Wall -fno-warn-name-shadowing -O2 -funbox-strict-fields
+
+executable VideoFunhouse
+  hs-source-dirs: exec/Examples/VideoFunhouse
+  main-is: VideoFunhouse.hs
+  other-modules: Rate
+  build-depends: base, HOpenCV, time, parallel
