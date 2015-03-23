@@ -1,4 +1,4 @@
-<div align="center"><img width="200" src="https://github.com/CBMM/CBMM.github.io/blob/master/site/images/cameraLensCV.png"></div>
+<div align="center"><img width="200" src="https://github.com/CBMM/CBMM.github.io/blob/master/site/images/cameraLensCV.png"><hr/></div>
 
 [OpenCV](http://opencv.willowgarage.com/wiki/) bindings for Haskell
 (tested with OpenCV 2.1, 2.2, 2.3.0, and 2.3.1).
