@@ -1,4 +1,4 @@
-<div align="center" style="width:200px;"><img src="https://github.com/CBMM/CBMM.github.io/blob/master/site/images/cameraLensCV.png"></div>
+<div align="center" width="300"><img src="https://github.com/CBMM/CBMM.github.io/blob/master/site/images/cameraLensCV.png"></div>
 
 # HOpenCV
 
